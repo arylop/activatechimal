@@ -1,0 +1,444 @@
+
+:root {
+    --morado: #6717a6;
+    --rosa: #e84d9b;
+    --azul: #159bd2;
+    --verde: #46bd67;
+    --tinta: #25213b;
+    --suave: #687087;
+    --borde: #e9e4f1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #f7f3ff, #eef8ff);
+    color: var(--tinta);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+    background: linear-gradient(100deg, #50118b, #8e27bd);
+    color: white;
+    text-align: center;
+    padding: 22px;
+}
+
+.marca {
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 27px;
+}
+
+.marca span {
+    color: #63e28b;
+}
+
+.encabezado p {
+    margin: 7px 0 0;
+}
+
+/* CONTENEDOR */
+
+.contenedor {
+    width: min(1050px, 93%);
+    margin: 28px auto 55px;
+}
+
+/* TARJETAS */
+
+.tarjeta {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 18px 0;
+    box-shadow: 0 5px 20px #32105a0b;
+}
+
+.auth {
+    max-width: 470px;
+    margin: 35px auto;
+}
+
+.icono-grande {
+    font-size: 38px;
+}
+
+.etiqueta {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+    color: var(--morado);
+    margin-bottom: 5px;
+}
+
+h1 {
+    margin: 5px 0 10px;
+    font-size: 30px;
+}
+
+h2 {
+    margin: 0 0 10px;
+    color: var(--morado);
+}
+
+h3 {
+    margin: 20px 0 10px;
+}
+
+.texto-suave {
+    color: var(--suave);
+    line-height: 1.5;
+}
+
+/* FORMULARIOS */
+
+.formulario {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.formulario label {
+    display: grid;
+    gap: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.formulario input:not([type=checkbox]) {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8c8e8;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.formulario input:focus {
+    outline: 2px solid #b88bd8;
+}
+
+.formulario button,
+button {
+    border: 0;
+    border-radius: 11px;
+    padding: 13px 17px;
+    background: linear-gradient(90deg, var(--morado), var(--rosa));
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.formulario button:hover,
+button:hover {
+    filter: brightness(1.06);
+}
+
+.centrado {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.centrado a {
+    color: var(--morado);
+    font-weight: bold;
+}
+
+/* MENSAJES */
+
+.mensaje {
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin: 12px 0;
+    background: #eaf5ff;
+}
+
+.mensaje.error,
+.mensaje.warning {
+    background: #fff0ed;
+    color: #963c2d;
+}
+
+.mensaje.success {
+    background: #eaf9ee;
+    color: #23743a;
+}
+
+/* BIENVENIDA */
+
+.bienvenida {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+}
+
+.boton-secundario {
+    padding: 11px 15px;
+    border: 1px solid #d9c4ed;
+    border-radius: 10px;
+    color: var(--morado);
+    text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* ESTADÍSTICAS */
+
+.estadisticas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 17px 0;
+}
+
+.estadisticas article {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    padding: 17px;
+    display: grid;
+    gap: 5px;
+}
+
+.estadisticas span {
+    font-size: 24px;
+}
+
+.estadisticas strong {
+    font-size: 27px;
+    color: var(--morado);
+}
+
+.estadisticas small {
+    color: var(--suave);
+}
+
+/* MENÚ */
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 18px 0;
+}
+
+.menu a {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 30px;
+    padding: 11px 14px;
+    text-decoration: none;
+    color: var(--morado);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.menu a:hover {
+    background: #f0e5ff;
+}
+
+.seccion {
+    scroll-margin-top: 16px;
+}
+
+.dos-columnas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+}
+
+.dos-columnas button {
+    min-height: 43px;
+}
+
+/* REGISTROS */
+
+.registro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 13px;
+    margin: 10px 0;
+    background: #f8f4ff;
+    border-radius: 12px;
+}
+
+.registro p {
+    margin: 5px 0;
+    color: var(--suave);
+    font-size: 13px;
+}
+
+.registro form {
+    margin: 0;
+}
+
+.boton-eliminar {
+    background: #d94b68;
+    padding: 9px 12px;
+}
+
+.vacio {
+    padding: 14px;
+    background: #faf8fd;
+    border-radius: 10px;
+    color: var(--suave);
+}
+
+/* DEPORTES */
+
+.deportes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 18px 0;
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: #f8f3ff;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.opcion input {
+    accent-color: var(--morado);
+    width: 17px;
+    height: 17px;
+}
+
+/* ALIMENTACIÓN */
+
+.alimentos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 17px;
+}
+
+.alimentos article {
+    background: #f5efff;
+    padding: 15px;
+    border-radius: 14px;
+}
+
+.alimentos span {
+    font-size: 27px;
+}
+
+.alimentos h3 {
+    color: var(--morado);
+    margin: 8px 0;
+}
+
+.alimentos p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--suave);
+}
+
+/* PROGRESO */
+
+.resumen-progreso {
+    display: flex;
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.resumen-progreso div {
+    flex: 1;
+    background: #eef7ff;
+    border-radius: 13px;
+    padding: 18px;
+    display: grid;
+    gap: 5px;
+}
+
+.resumen-progreso strong {
+    font-size: 27px;
+    color: var(--azul);
+}
+
+.resumen-progreso span {
+    font-size: 13px;
+    color: var(--suave);
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+    text-align: center;
+    color: var(--suave);
+    padding: 20px;
+    font-size: 13px;
+}
+
+/* DISEÑO RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .contenedor {
+        width: 94%;
+        margin-top: 16px;
+    }
+
+    .marca {
+        font-size: 23px;
+    }
+
+    .bienvenida {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .estadisticas {
+        grid-template-columns: 1fr;
+    }
+
+    .dos-columnas {
+        grid-template-columns: 1fr;
+    }
+
+    .deportes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .alimentos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resumen-progreso {
+        flex-direction: column;
+    }
+
+    .tarjeta {
+        padding: 18px;
+    }
+
+    .menu a {
+        font-size: 12px;
+    }
+
+    .registro {
+        align-items: flex-start;
+    }
+}

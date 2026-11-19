@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Iniciar sesión | Activate + Chimal
+{% endblock %}
+
+{% block contenido %}
+
+<section class="tarjeta auth">
+
+    <div class="icono-grande">🏃‍♀️</div>
+
+    <p class="etiqueta">¡Qué gusto tenerte aquí!</p>
+
+    <h1>Iniciar sesión</h1>
+
+    <p class="texto-suave">
+        Ingresa para consultar y registrar tus actividades.
+    </p>
+
+    <form method="POST" class="formulario">
+
+        <label>
+            Usuario o correo electrónico
+
+            <input
+                type="text"
+                name="identidad"
+                required
+                autocomplete="username"
+                placeholder="Tu usuario o correo"
+            >
+        </label>
+
+        <label>
+            Contraseña
+
+            <input
+                type="password"
+                name="password"
+                required
+                autocomplete="current-password"
+                placeholder="Tu contraseña"
+            >
+        </label>
+
+        <button type="submit">
+            Ingresar
+        </button>
+
+    </form>
+
+    <p class="centrado">
+        ¿No tienes cuenta?
+
+        <a href="{{ url_for('registro') }}">
+            Regístrate aquí
+        </a>
+    </p>
+
+</section>
+
+{% endblock %}

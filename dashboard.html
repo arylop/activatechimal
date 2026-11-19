@@ -1,0 +1,422 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Menú principal | Activate + Chimal
+{% endblock %}
+
+{% block contenido %}
+
+<!-- BIENVENIDA -->
+
+<section class="bienvenida">
+
+    <div>
+
+        <p class="etiqueta">MENÚ PRINCIPAL</p>
+
+        <h1>
+            ¡Hola, {{ usuario.nombre }}! 👋
+        </h1>
+
+        <p class="texto-suave">
+            Pequeños pasos también cuentan.
+            Registra tu movimiento y consulta tus avances.
+        </p>
+
+    </div>
+
+    <a class="boton-secundario"
+       href="{{ url_for('salir') }}">
+        Cerrar sesión
+    </a>
+
+</section>
+
+
+<!-- ESTADÍSTICAS -->
+
+<section class="estadisticas">
+
+    <article>
+        <span>⏱️</span>
+        <strong>{{ total_minutos }}</strong>
+        <small>Minutos registrados</small>
+    </article>
+
+    <article>
+        <span>📋</span>
+        <strong>{{ actividades|length }}</strong>
+        <small>Actividades guardadas</small>
+    </article>
+
+    <article>
+        <span>🏅</span>
+        <strong>{{ deportes|length }}</strong>
+        <small>Deportes favoritos</small>
+    </article>
+
+</section>
+
+
+<!-- MENÚ -->
+
+<nav class="menu">
+
+    <a href="#actividad">🏃 Actividad física</a>
+
+    <a href="#deportes">🏆 Deportes</a>
+
+    <a href="#alimentacion">🥗 Alimentación</a>
+
+    <a href="#progreso">📈 Mi progreso</a>
+
+    <a href="#perfil">👤 Perfil</a>
+
+</nav>
+
+
+<!-- ACTIVIDAD FÍSICA -->
+
+<section class="tarjeta seccion" id="actividad">
+
+    <h2>🏃 Actividad física</h2>
+
+    <p class="texto-suave">
+        Registra caminatas, ejercicio, baile o bicicleta.
+    </p>
+
+    <form
+        method="POST"
+        action="{{ url_for('actividad') }}"
+        class="formulario dos-columnas"
+    >
+
+        <label>
+            Tipo de actividad
+
+            <input
+                name="actividad"
+                required
+                maxlength="80"
+                placeholder="Ej. Caminata"
+            >
+        </label>
+
+        <label>
+            Duración en minutos
+
+            <input
+                type="number"
+                name="minutos"
+                min="1"
+                max="1440"
+                required
+                placeholder="Ej. 30"
+            >
+        </label>
+
+        <label>
+            Fecha
+
+            <input
+                type="date"
+                name="fecha"
+                value="{{ hoy }}"
+                required
+            >
+        </label>
+
+        <label>
+            Notas (opcional)
+
+            <input
+                name="notas"
+                maxlength="250"
+                placeholder="¿Cómo te fue?"
+            >
+        </label>
+
+        <button type="submit">
+            Guardar actividad
+        </button>
+
+    </form>
+
+    <h3>Mis actividades</h3>
+
+    {% for a in actividades %}
+
+        <div class="registro">
+
+            <div>
+
+                <strong>{{ a.actividad }}</strong>
+
+                <p>
+                    {{ a.fecha.strftime('%d/%m/%Y') }}
+                    ·
+                    {{ a.minutos }} minutos
+                </p>
+
+                {% if a.notas %}
+                    <small>{{ a.notas }}</small>
+                {% endif %}
+
+            </div>
+
+            <form
+                method="POST"
+                action="{{ url_for('eliminar', actividad_id=a.id) }}"
+                onsubmit="return confirm('¿Eliminar este registro?')"
+            >
+
+                <button
+                    class="boton-eliminar"
+                    type="submit"
+                >
+                    Eliminar
+                </button>
+
+            </form>
+
+        </div>
+
+    {% else %}
+
+        <p class="vacio">
+            Todavía no tienes actividades registradas.
+        </p>
+
+    {% endfor %}
+
+</section>
+
+
+<!-- DEPORTES -->
+
+<section class="tarjeta seccion" id="deportes">
+
+    <h2>🏆 Deportes favoritos</h2>
+
+    <p class="texto-suave">
+        Selecciona los deportes que te interesan.
+    </p>
+
+    <form
+        method="POST"
+        action="{{ url_for('guardar_deportes') }}"
+    >
+
+        <div class="deportes">
+
+            {% for deporte in [
+                "Fútbol",
+                "Básquetbol",
+                "Voleibol",
+                "Natación",
+                "Atletismo",
+                "Ciclismo",
+                "Baile",
+                "Tenis"
+            ] %}
+
+                <label class="opcion">
+
+                    <input
+                        type="checkbox"
+                        name="deportes"
+                        value="{{ deporte }}"
+                        {% if deporte in deportes %}checked{% endif %}
+                    >
+
+                    {{ deporte }}
+
+                </label>
+
+            {% endfor %}
+
+        </div>
+
+        <button type="submit">
+            Guardar favoritos
+        </button>
+
+    </form>
+
+    <p>
+        <strong>Mis favoritos:</strong>
+
+        {{ deportes|join(", ") if deportes else "Aún no has seleccionado deportes." }}
+    </p>
+
+</section>
+
+
+<!-- ALIMENTACIÓN -->
+
+<section class="tarjeta seccion" id="alimentacion">
+
+    <h2>🥗 Alimentación</h2>
+
+    <p class="texto-suave">
+        Ideas generales para una alimentación variada y equilibrada.
+    </p>
+
+    <div class="alimentos">
+
+        <article>
+
+            <span>🍎</span>
+
+            <h3>Frutas y verduras</h3>
+
+            <p>
+                Incluye diferentes colores y variedades en tus comidas.
+            </p>
+
+        </article>
+
+        <article>
+
+            <span>🌾</span>
+
+            <h3>Cereales y tubérculos</h3>
+
+            <p>
+                Son parte de una alimentación variada.
+            </p>
+
+        </article>
+
+        <article>
+
+            <span>🥚</span>
+
+            <h3>Proteínas</h3>
+
+            <p>
+                Algunas opciones son huevo, frijoles,
+                pescado y legumbres.
+            </p>
+
+        </article>
+
+        <article>
+
+            <span>💧</span>
+
+            <h3>Agua simple</h3>
+
+            <p>
+                Recuerda mantenerte hidratado durante el día.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- PROGRESO -->
+
+<section class="tarjeta seccion" id="progreso">
+
+    <h2>📈 Mi progreso</h2>
+
+    <div class="resumen-progreso">
+
+        <div>
+            <strong>{{ total_minutos }}</strong>
+            <span>Minutos registrados</span>
+        </div>
+
+        <div>
+            <strong>{{ actividades|length }}</strong>
+            <span>Actividades guardadas</span>
+        </div>
+
+    </div>
+
+    <p class="texto-suave">
+        Este resumen se calcula a partir
+        de las actividades que has guardado.
+    </p>
+
+    {% for a in actividades[:5] %}
+
+        <div class="registro">
+
+            <div>
+
+                <strong>{{ a.actividad }}</strong>
+
+                <p>
+                    {{ a.fecha.strftime('%d/%m/%Y') }}
+                    ·
+                    {{ a.minutos }} minutos
+                </p>
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</section>
+
+
+<!-- PERFIL -->
+
+<section class="tarjeta seccion" id="perfil">
+
+    <h2>👤 Mi perfil</h2>
+
+    <form
+        method="POST"
+        action="{{ url_for('perfil') }}"
+        class="formulario dos-columnas"
+    >
+
+        <label>
+            Nombre completo
+
+            <input
+                name="nombre"
+                value="{{ usuario.nombre }}"
+                required
+                maxlength="100"
+            >
+        </label>
+
+        <label>
+            Correo electrónico
+
+            <input
+                type="email"
+                name="correo"
+                value="{{ usuario.correo }}"
+                required
+                maxlength="150"
+            >
+        </label>
+
+        <label>
+            Nombre de usuario
+
+            <input
+                value="{{ usuario.usuario }}"
+                disabled
+            >
+        </label>
+
+        <button type="submit">
+            Actualizar perfil
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}
